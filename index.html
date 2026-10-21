@@ -1,93 +1,371 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Kawya Group</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"><style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--ink:#1d1b3a;--mut:#6b6a85;--acc:#2a1f6b;--card:#f7f6fd;--gl:rgba(255,255,255,.62);--ln:#e1dff2;--ok:#1f8f5f;--bad:#c2410c;--pg:linear-gradient(160deg,#d8d0c6,#b8afa4);--sky:linear-gradient(180deg,#a9c8ee,#c9b8dc 55%,#e9d3d0)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#eceaff;--mut:#a09fc0;--acc:#8c7dff;--card:#1b1a30;--gl:rgba(34,32,62,.7);--ln:#33315a;--pg:linear-gradient(160deg,#2c2925,#1c1a18);--sky:linear-gradient(180deg,#26365e,#3a2f5c 60%,#4a3350)}}
-:root[data-theme=dark]{--ink:#eceaff;--mut:#a09fc0;--acc:#8c7dff;--card:#1b1a30;--gl:rgba(34,32,62,.7);--ln:#33315a;--pg:linear-gradient(160deg,#2c2925,#1c1a18);--sky:linear-gradient(180deg,#26365e,#3a2f5c 60%,#4a3350)}
-body{margin:0;padding:14px;font-family:Urbanist,system-ui,sans-serif;color:var(--ink);background:var(--pg);background-attachment:fixed;background-color:var(--card)}
-.shell{max-width:1280px;margin:auto;border-radius:44px;background:var(--sky);padding:16px;box-shadow:0 0 0 6px rgba(255,255,255,.55);display:grid;grid-template-columns:90px 1fr;gap:16px;min-height:80vh}
-.side{background:var(--card);border-radius:40px;padding:12px 6px;display:flex;flex-direction:column;gap:4px;align-self:start;position:sticky;top:12px}
-.side button{border:0;background:transparent;color:var(--mut);border-radius:26px;padding:9px 2px;font:600 10px Urbanist;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
-.side button.on{background:var(--acc);color:#fff}
-svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.top{display:flex;gap:10px;align-items:center;background:var(--card);border-radius:40px;padding:8px 10px;margin-bottom:14px;flex-wrap:wrap}
-.top b{font-size:17px;padding:0 10px}
-input,select{font:500 14px Urbanist;color:var(--ink);background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:10px 12px;width:100%;box-sizing:border-box}
-.top input{flex:1;min-width:150px;width:auto;border-radius:30px}
-button.b,button.g{border-radius:30px;padding:10px 18px;font:700 13px Urbanist;cursor:pointer;border:1px solid var(--acc)}
-button.b{background:var(--acc);color:#fff}button.g{background:var(--card);color:var(--ink);border-color:var(--ln)}
-button.s{padding:6px 12px;font-size:12px}
-.card{background:var(--gl);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:32px;padding:20px;border:1px solid rgba(255,255,255,.5);margin-bottom:14px}
-h2,h3{margin:0 0 12px}.mu{color:var(--mut)}
-.hero h1{font-size:clamp(42px,9vw,96px);line-height:.95;margin:20px 0 10px;color:rgba(255,255,255,.8);font-weight:700}
-.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.k{cursor:pointer;margin:0}.k b{font-size:44px;display:block}
-.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;align-items:end;margin-bottom:12px}
-label{font:600 12px Urbanist;color:var(--mut);display:flex;flex-direction:column;gap:4px}
-.w{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--ln);white-space:nowrap}
-.tg{display:inline-block;border-radius:20px;padding:3px 10px;font:700 11px Urbanist;background:var(--ln)}.ok{color:var(--ok)}.bad{color:var(--bad)}
-.tb{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.mb{position:fixed;inset:0;background:rgba(20,16,50,.5);display:flex;align-items:center;justify-content:center;padding:14px;z-index:9;overflow:auto}
-.mc{background:var(--card);border-radius:32px;padding:24px;max-width:640px;width:100%;max-height:90vh;overflow:auto}
-pre{font:13px/1.35 "Courier New",monospace;white-space:pre-wrap;margin:0 0 12px}
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>Kawya Group</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#c9c9c1;--panel:#f8f7f2;--card:#fff;--soft:#f3f2ea;--ink:#161616;--mut:#9b9b93;--ln:#e9e8de;--lime:#d9f36b;--limeD:#c9e655;--limeInk:#1b2400;--yel:#f3b63f;--dark:#171717;--ok:#2e9b5c;--bad:#e0572b;--blue:#d5e3f8;--cream:#fff1bd;--rose:#ffe1d6;--btn:#161616;--btnInk:#fff}
+:root[data-theme=dark]{--bg:#0f0f0e;--panel:#1b1b18;--card:#252521;--soft:#2e2e29;--ink:#f3f2ea;--mut:#8e8e85;--ln:#393932;--dark:#0b0b0a;--blue:#2b3a52;--cream:#463d1c;--rose:#4a2c22;--btn:#f3f2ea;--btnInk:#161616}
+html{scroll-padding-top:20px}
+body{margin:0;padding:clamp(8px,2vw,28px);font-family:Urbanist,system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.app{max-width:1520px;margin:auto;display:grid;grid-template-columns:236px minmax(0,1fr);gap:20px;align-items:start}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* sidebar */
+.side{background:var(--card);border-radius:34px;padding:26px 16px 16px;position:sticky;top:clamp(8px,2vw,28px);min-height:min(880px,calc(100vh - 56px));display:flex;flex-direction:column}
+.logo{display:flex;align-items:center;justify-content:center;gap:8px;font:800 19px Urbanist}
+.logo svg{width:34px;height:34px}
+.me{text-align:center;margin:20px 0 22px}
+.av{width:92px;height:92px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(145deg,var(--lime),var(--yel));display:grid;place-items:center;font:800 30px Urbanist;color:#1b1b1b}
+.nm{font:700 17px Urbanist;display:flex;align-items:center;justify-content:center;gap:4px}
+.nm svg{width:14px;height:14px;color:var(--mut)}
+.me small{color:var(--mut);font-size:11.5px;font-weight:500;display:block;margin-top:2px}
+#nav button{width:100%;display:flex;align-items:center;gap:12px;padding:11px 14px;border:0;border-radius:14px;background:none;color:var(--ink);font:600 14px Urbanist;cursor:pointer;text-align:left;margin-bottom:3px}
+#nav button svg{color:var(--mut)}
+#nav button:hover{background:var(--soft)}
+#nav button.on{background:var(--lime);color:var(--limeInk);font-weight:700}
+#nav button.on svg{color:var(--limeInk)}
+#nav em{margin-left:auto;font:700 10px Urbanist;font-style:normal;background:var(--yel);color:#1b1b1b;border-radius:10px;padding:2px 7px}
+.help{margin-top:auto;position:relative;background:var(--dark);color:#fff;border-radius:26px;padding:40px 16px 18px;text-align:center;overflow:hidden}
+.help .q{position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:42px;height:42px;border-radius:0 0 21px 21px;background:var(--lime);color:var(--limeInk);display:grid;place-items:center;font:800 17px Urbanist}
+.help b{font-size:16px}.help p{margin:4px 0 12px;font-size:11.5px;color:#b9b9b0}
+.help button{background:#fff;color:#111;border:0;border-radius:10px;padding:8px 14px;font:700 12px Urbanist;cursor:pointer;position:relative}
+.help svg.dd{position:absolute;left:0;bottom:0;width:100%;height:50px;opacity:.35;pointer-events:none}
+/* panel and top bar */
+.panel{background:var(--panel);border-radius:38px;padding:24px 28px 32px;min-height:calc(100vh - 56px);min-width:0}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.tabs{display:flex;gap:22px;align-items:center;margin-right:auto;flex-wrap:wrap}
+.tab{background:none;border:0;border-bottom:2px solid transparent;font:600 15px Urbanist;color:var(--mut);padding:6px 0;cursor:pointer;display:flex;gap:7px;align-items:center}
+.tab.on{color:var(--ink);border-bottom-color:var(--ink)}
+.tab svg{width:16px;height:16px}
+.srch{position:relative;width:min(300px,100%);color:var(--mut)}
+.srch svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px}
+input,select{font:500 14px Urbanist;color:var(--ink);background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:11px 13px;width:100%;outline:0}
+input:focus,select:focus{border-color:var(--ink)}
+.srch input{padding-left:36px;background:transparent}
+.seg{display:flex;background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:3px}
+.seg button{border:0;background:none;color:var(--mut);font:600 12px Urbanist;padding:6px 11px;border-radius:10px;display:flex;gap:5px;align-items:center;cursor:pointer}
+.seg svg{width:13px;height:13px}
+:root:not([data-theme=dark]) .seg .lt,:root[data-theme=dark] .seg .dk{background:var(--lime);color:var(--limeInk)}
+.ib{width:38px;height:38px;border-radius:50%;border:0;background:none;color:var(--ink);cursor:pointer;position:relative;display:grid;place-items:center}
+.ib:hover{background:var(--soft)}
+.ib .dot{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%;background:var(--yel);display:none}
+.b,.g,.d{border-radius:30px;padding:10px 18px;font:700 13px Urbanist;cursor:pointer;border:0;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+.b{background:var(--lime);color:var(--limeInk)}.b:hover{background:var(--limeD)}
+.g{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.d{background:var(--btn);color:var(--btnInk);border-radius:14px;padding:12px 20px;font-size:14px}
+.s{padding:6px 14px;font-size:12px}
+.d svg{width:16px;height:16px}
+/* content */
+.ph h1{font-size:38px;line-height:1.05;margin:0 0 6px;font-weight:700}
+.ph p{color:var(--mut);margin:0 0 22px;font-size:15px}
+.card{background:var(--card);border-radius:28px;padding:22px;margin-bottom:18px}
+.card h2,.card h3{margin:0 0 14px}
+.mu{color:var(--mut)}
+.hero-row{display:grid;grid-template-columns:minmax(260px,400px) minmax(0,1fr);gap:24px;align-items:center}
+.hero h1{font-size:clamp(34px,4vw,48px);line-height:1.06;margin:0 0 14px;font-weight:700}
+.hero .hl{color:var(--yel)}
+.hero p{color:var(--mut);font-size:15.5px;margin:0;max-width:340px}
+.cards{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 8px}
+.mini{flex:0 0 148px;background:var(--card);border-radius:26px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;border:0;text-align:left;font-family:inherit;color:inherit}
+.mini:hover{transform:translateY(-2px)}
+.mini svg{width:100%;height:112px}
+.mini b{font-size:15px}.mini span{color:var(--mut);font-size:12px;font-weight:500}
+.mini.new{background:transparent;border:1.5px dashed var(--mut);align-items:center;justify-content:center}
+.mini.new i{width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--limeInk);display:grid;place-items:center}
+.dash{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;margin-top:24px}
+.rings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.ring{background:var(--card);border-radius:24px;padding:16px;display:grid;grid-template-columns:62px 1fr;gap:6px 12px;align-items:center}
+.ring small{display:block;font:700 10px Urbanist;color:var(--yel);text-transform:uppercase;letter-spacing:.05em}
+.ring b{font-size:16px}
+.ring .ft{grid-column:1/-1;display:flex;justify-content:space-between;align-items:flex-end;gap:8px;font-size:11.5px;color:var(--mut);margin-top:8px}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
+.sh h3{margin:0;font-size:20px}.sh a{color:var(--mut);font-size:13px;cursor:pointer;font-weight:600}
+.todo{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tk{border-radius:22px;padding:18px;background:var(--soft);min-height:134px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;cursor:pointer}
+.tk.dk{background:var(--dark);color:#fff;box-shadow:0 16px 26px -14px rgba(0,0,0,.5)}
+.tk .t1{display:flex;justify-content:space-between;gap:12px;font:700 16px/1.3 Urbanist}
+.tk .t2{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;font-weight:600}
+.lv{font:600 11px Urbanist;border-radius:20px;padding:5px 12px;height:fit-content;background:var(--rose);color:#7a2c10;white-space:nowrap}
+.dk .lv{background:rgba(255,255,255,.88);color:#222}
+.pl{display:inline-block;padding:7px 14px;border-radius:12px;font:600 12px Urbanist;color:#222}
+.pl.cr{background:var(--cream)}.pl.bl{background:var(--blue)}.pl.ro{background:var(--rose)}.pl.lm{background:var(--lime)}
+:root[data-theme=dark] .pl{color:#f3f2ea}
+.row{display:grid;grid-template-columns:44px minmax(120px,1.2fr) 118px minmax(120px,1.3fr) auto;gap:14px;align-items:center;background:var(--soft);border-radius:20px;padding:12px 16px;margin-bottom:10px}
+.row .th{width:44px;height:44px;border-radius:14px;background:var(--lime);color:var(--limeInk);display:grid;place-items:center}
+.row small{display:block;color:var(--mut);font-size:11.5px}
+.row .am small{text-transform:uppercase;font-size:10px;letter-spacing:.04em}
+.bar2{height:5px;border-radius:5px;background:var(--ln);overflow:hidden;margin-top:5px}
+.bar2 i{display:block;height:100%;background:var(--yel);border-radius:5px}
+.add{display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px dashed var(--ln);border-radius:20px;padding:16px;font-weight:700;cursor:pointer;background:none;color:var(--ink);width:100%;font-family:inherit;font-size:14px}
+.add i{width:24px;height:24px;border-radius:8px;background:var(--lime);color:var(--limeInk);display:grid;place-items:center}
+.add svg{width:14px;height:14px}
+.chead{display:flex;align-items:center;justify-content:space-between}
+.chead h3{margin:0;font-size:22px}
+.arr{display:flex;gap:6px}
+.arr button{width:28px;height:28px;border-radius:50%;border:0;background:var(--soft);cursor:pointer;color:var(--ink);display:grid;place-items:center}
+.arr svg{width:14px;height:14px}
+.wkd{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:2px;margin:18px 0 8px;font-size:11px;color:var(--mut);font-weight:600}
+.wkd div{display:flex;flex-direction:column;align-items:center;gap:6px}
+.wkd span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 13px Urbanist;color:var(--ink);position:relative}
+.wkd .td span{background:var(--yel);color:#1b1b1b}
+.wkd span i{position:absolute;bottom:3px;width:5px;height:5px;border-radius:50%;background:var(--ok)}
+.ev{display:flex;gap:12px;align-items:center;padding:14px 0;border-top:1.5px dotted var(--ln)}
+.ev .ec{width:34px;height:34px;border-radius:50%;background:var(--soft);display:grid;place-items:center;flex:none}
+.ev .ec svg{width:16px;height:16px}
+.ev b{font-size:13.5px;display:block}.ev small{color:var(--mut);font-size:11.5px}
+.nt{background:var(--soft);border-radius:20px;padding:14px 16px;margin-bottom:10px;cursor:pointer}
+.nt b{font-size:14px;display:block}.nt p{margin:3px 0 6px;color:var(--mut);font-size:12.5px}.nt small{color:var(--mut);font-size:11.5px;font-weight:600}
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--soft);border-radius:22px;padding:18px}
+.kp b{font-size:24px;display:block;margin-bottom:2px}.kp span{color:var(--mut);font-size:13px;font-weight:600}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;align-items:end;margin-bottom:14px}
+label{font:600 12px Urbanist;color:var(--mut);display:flex;flex-direction:column;gap:5px}
+.w{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font:700 11px Urbanist;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);text-align:left;padding:8px 10px;white-space:nowrap}
+td{text-align:left;padding:12px 10px;border-top:1px solid var(--ln);white-space:nowrap}
+.tg{display:inline-block;border-radius:20px;padding:4px 11px;font:700 11px Urbanist;background:var(--soft)}
+.tg.ok{background:rgba(46,155,92,.16);color:var(--ok)}.tg.bad{background:rgba(224,87,43,.15);color:var(--bad)}.tg.wn{background:var(--cream)}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.btot{font-size:34px;margin:6px 0 16px}
+.sec{font-size:14px;font-weight:700;margin:6px 0 10px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.mb{position:fixed;inset:0;background:rgba(15,15,10,.5);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:14px;z-index:50;overflow:auto}
+.mc{background:var(--card);border-radius:30px;padding:26px;max-width:680px;width:100%;max-height:92vh;overflow:auto}
+.mc h2{margin:0 0 12px}
+.mc .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+pre#pb{font:13px/1.35 "Courier New",monospace;white-space:pre;overflow-x:auto;margin:0 0 12px;background:#fff;color:#000;padding:14px;border-radius:14px;border:1px solid var(--ln)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);background:#161616;color:#fff;padding:12px 20px;border-radius:30px;font:600 13px Urbanist;opacity:0;pointer-events:none;transition:.25s;z-index:99;max-width:90vw}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 @page{size:9.5in 5.5in;margin:6mm}
-@media print{body *{visibility:hidden}#pb,#pb *{visibility:visible}#pb{position:absolute;left:0;top:0;color:#000;font-size:11pt}}
-@media(max-width:760px){.shell{grid-template-columns:1fr;border-radius:28px;padding:10px}.side{flex-direction:row;overflow-x:auto;position:static;border-radius:30px}.side button{min-width:62px}}
-</style></head><body><div class="shell"><nav class="side" id="nav"></nav><div><div class="top"><b>Kawya Group</b><input id="gs" placeholder="Search customer by NIC, name or phone" oninput="Q=this.value;tab=='cust'?rc():go('cust')"><button class="g s" onclick="th()">Light / Dark</button><button class="g s" id="lk" onclick="L=false;render()"></button></div><div id="main"></div></div></div><div id="mdl"></div>
+@media print{
+ body *{visibility:hidden}
+ #pb,#pb *{visibility:visible}
+ body{padding:0;background:#fff}
+ .mb{position:static;display:block;padding:0;background:none;overflow:visible;backdrop-filter:none}
+ .mc{max-height:none;overflow:visible;background:none;padding:0}
+ #pb{position:absolute;left:0;top:0;color:#000!important;background:#fff!important;font-size:11pt;border:0;padding:0;overflow:visible}
+}
+@media(max-width:1180px){.dash{grid-template-columns:1fr}.hero-row{grid-template-columns:1fr}.rings{grid-template-columns:1fr}}
+@media(max-width:900px){
+ .app{grid-template-columns:1fr}
+ .side{position:static;min-height:0;padding:12px;border-radius:26px}
+ .logo,.me,.help{display:none}
+ #nav{display:flex;overflow-x:auto;gap:4px}
+ #nav button{width:auto;white-space:nowrap;margin:0;flex:none}
+ .panel{padding:18px 14px 26px;border-radius:28px}
+ .row{grid-template-columns:44px 1fr auto}.row .pg,.row .am{display:none}
+ .ph h1{font-size:30px}
+}
+</style></head><body>
+<div class="app">
+<aside class="side">
+ <div class="logo"><svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" rx="7" transform="rotate(45 20 20)" fill="#d9f36b" stroke="#1a1a1a" stroke-width="2.4"/><rect x="15" y="15" width="10" height="10" rx="3" transform="rotate(45 20 20)" fill="#1a1a1a"/></svg>Kawya</div>
+ <div class="me"><div class="av">KG</div><div class="nm">Kawya Group <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><small>Concrete yard · Hardware · Transport</small></div>
+ <nav id="nav"></nav>
+ <div class="help"><span class="q">?</span><b>Help center</b><p>Backups and quick tips</p><button onclick="help()">Open help</button>
+  <svg class="dd" viewBox="0 0 200 50" fill="none" stroke="#fff" stroke-width="1.2"><path d="M0 40c30-30 50 10 80-12s50 8 120-14"/><path d="M0 48c40-22 70 6 110-8s60 4 90-8"/></svg></div>
+</aside>
+<main class="panel">
+ <div class="bar">
+  <div class="tabs" id="tabs"></div>
+  <div class="srch"><span data-ic="search"></span><input id="gs" placeholder="Search customer by NIC, name or phone" oninput="Q=this.value;tab=='cust'?rc():go('cust')"></div>
+  <div class="seg"><button class="lt" onclick="th('light')"><span data-ic="sun"></span>Light</button><button class="dk" onclick="th('dark')"><span data-ic="moon"></span>Dark</button></div>
+  <button class="ib" onclick="showNotes()" title="Notifications"><span data-ic="bell"></span><i class="dot" id="bdot"></i></button>
+  <button class="ib" onclick="help()" title="Help and backup"><span data-ic="gear"></span></button>
+  <button class="d" onclick="go('bill')"><span data-ic="plus"></span>New bill</button>
+ </div>
+ <div id="main"></div>
+</main>
+</div>
+<div id="mdl"></div><div id="toast" class="toast"></div>
 <script>
-const $=i=>document.getElementById(i),v=i=>$(i).value.trim(),K='kawya1',D=()=>new Date().toISOString().slice(0,10),f=n=>'Rs. '+(+n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),PH='2431106bbea6b5a282034c6c3be7d55819607b4f0b5687bf58028125e1466d2c',sha=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
-let S,tab='home',L=false,Q='',B=[],sub={t:'wait',s:'daily',p:'pend'};
+/* ---------- helpers ---------- */
+const $=i=>document.getElementById(i),v=i=>{const e=$(i);return e?e.value.trim():''},K='kawya1',
+pad=n=>String(n).padStart(2,'0'),ymd=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),D=()=>ymd(new Date()),
+f=n=>'Rs. '+(+n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),
+E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),
+EN=s=>encodeURIComponent(s).replace(/'/g,'%27'),
+O=(a,fn)=>a.map(fn).join('');
+let S=null,tab='home',Q='',B=[],wo=0,hideN=false,sub={t:'wait',s:'daily',p:'pend'};
+const DEF=()=>({n:1,cu:{},bl:[],st:[{n:'Cement bag (50kg)',c:'Hardware',q:120,u:'bag',p:2300,k:2000,r:30},{n:'Hollow block 6 inch',c:'Concrete yard',q:800,u:'pcs',p:140,k:105,r:100},{n:'Concrete culvert pipe',c:'Concrete yard',q:40,u:'pcs',p:6500,k:5000,r:10},{n:'Steel rod 12mm',c:'Hardware',q:200,u:'pcs',p:3800,k:3400,r:40}],sl:[],fl:{d:[],a:[],v:[]},wk:[],sp:[],pay:[]});
+function fix(){const d=DEF();for(const k in d)if(S[k]==null)S[k]=d[k];['d','a','v'].forEach(k=>{if(!S.fl[k])S.fl[k]=[]})}
 try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
-S=S||{n:1,cu:{},bl:[],st:[{n:'Cement bag (50kg)',c:'Hardware',q:120,u:'bag',p:2300,k:2000,r:30},{n:'Hollow block 6 inch',c:'Concrete yard',q:800,u:'pcs',p:140,k:105,r:100},{n:'Concrete culvert pipe',c:'Concrete yard',q:40,u:'pcs',p:6500,k:5000,r:10},{n:'Steel rod 12mm',c:'Hardware',q:200,u:'pcs',p:3800,k:3400,r:40}],sl:[],fl:{d:[],a:[],v:[]},wk:[],sp:[],pay:[]};
-const P=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},pd=b=>b.pays.reduce((s,p)=>s+p.a,0),bal=b=>b.total-pd(b),inC=b=>b.m=='Cheque'&&b.ch.st=='Pending',ph=n=>{n=String(n).replace(/\D/g,'');return n[0]=='0'?'94'+n.slice(1):n},wa=(p,t)=>window.open('https://wa.me/'+ph(p)+'?text='+encodeURIComponent(t),'_blank');
-const IC={home:'M3 11l9-8 9 8M5 10v10h14V10',bill:'M6 3h9l4 4v14H6zM9 12h7M9 16h7',cust:'M16 20v-2a4 4 0 00-8 0v2M12 12a3 3 0 100-6 3 3 0 000 6',pend:'M12 7v5l3 2M12 21a9 9 0 100-18 9 9 0 000 18',stock:'M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10',trans:'M2 6h12v10H2zM14 10h4l3 3v3h-7M6 19a2 2 0 100-4 2 2 0 000 4M17 19a2 2 0 100-4 2 2 0 000 4',sal:'M3 7h16a2 2 0 012 2v9a2 2 0 01-2 2H3zM3 7l12-3v3M16 13h3',sup:'M5 8h14l-1 12H6zM9 8a3 3 0 016 0',fleet:'M12 21a9 9 0 100-18 9 9 0 000 18M12 12v9M3 12h18',fin:'M4 20V10M10 20V4M16 20v-8M22 20H2'};
-const T=[['home','Home'],['bill','New bill'],['cust','Customers'],['pend','Payments'],['stock','Stock'],['trans','Transport'],['sal','Salary'],['sup','Supplies'],['fleet','Fleet'],['fin','Finance']];
-const F=(id,l,t='text',val='',x='')=>`<label>${l}<input id="${id}" type="${t}" value="${val}" ${x}></label>`,
-O=(a,fn)=>a.map(fn).join(''),M=h=>{$('mdl').innerHTML='<div class="mb"><div class="mc">'+h+'<p><button class="g" onclick="X()">Close</button></p></div></div>'},X=()=>$('mdl').innerHTML='',
-tabs=(k,a)=>`<div class="tb">${O(a,x=>`<button class="${sub[k]==x[0]?'b':'g'}" onclick="sub['${k}']='${x[0]}';render()">${x[1]}</button>`)}</div>`,
-th=()=>{const r=document.documentElement;r.dataset.theme=(r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))=='dark'?'light':'dark'},
-go=t=>{tab=t;render()};
-function render(){$('nav').innerHTML=O(T,t=>`<button class="${tab==t[0]?'on':''}" onclick="go('${t[0]}')"><svg class="i" viewBox="0 0 24 24"><path d="${IC[t[0]]}"/></svg>${t[1]}</button>`);$('lk').textContent=L?'Lock private areas':'Private areas locked';let h;if((tab=='fleet'||tab=='fin')&&!L)h=`<div class="card"><h2>Private area</h2><p class="mu">Enter the password to open ${tab=='fin'?'Finance':'Fleet, driver and vehicle details'}.</p><div class="fg">${F('pw','Password','password')}<button class="b" onclick="unl()">Unlock</button></div></div>`;else h=V[tab]();$('main').innerHTML=h;if(tab=='cust')rc();if(tab=='bill')rI()}
-async function unl(){let ok=false;try{ok=await sha(v('pw'))==PH}catch(e){alert('Open this site over https (GitHub Pages) to use the password.');return}if(ok){L=true;render()}else alert('Wrong password.')}
-const st=b=>inC(b)?'<span class="tg">Cheque pending</span>':bal(b)>0?'<span class="tg bad">Pending '+f(bal(b))+'</span>':'<span class="tg ok">Paid</span>';
-const V={
-home:()=>{const t=D();return `<div class="hero"><h1>New Way<br>Of Working</h1><p>Concrete yard, hardware and transport in one place.</p></div><div class="gr">${O([['New bills today',S.bl.filter(b=>b.d==t).length,'bill'],['Pending payments',S.bl.filter(b=>bal(b)>0&&!inC(b)).length,'pend'],['Bank cheques',S.bl.filter(inC).length,'pend'],['Waiting for transport',S.bl.filter(b=>b.tr=='wait').length,'trans'],['Low stock items',S.st.filter(s=>s.q<=s.r).length,'stock']],x=>`<div class="card k" onclick="go('${x[2]}')"><b>${x[1]}</b>${x[0]}</div>`)}</div>`},
-bill:()=>`<div class="card"><h2>New bill</h2><div class="fg">${F('bn','Customer name')}${F('bi','NIC number')}${F('bp','Phone (WhatsApp)','tel')}${F('ba','Address or site location')}<label>Section<select id="bd"><option>Concrete yard<option>Hardware<option>Transport service</select></label></div><h3>Items</h3><div class="fg"><label>Stock item<select id="si" onchange="pick()"><option value="-1">Other (type name)${O(S.st,(s,i)=>`<option value="${i}">${s.n} (${s.q} left)`)}</select></label>${F('sn','Item name (if other)')}${F('sq','Quantity','number','1')}${F('sp','Unit price','number')}<button class="b" onclick="addI()">Add item</button></div><div id="il" class="w"></div><div class="fg">${F('bx','Discount (Rs.)','number','0','oninput="rI()"')}<label>Our transport needed?<select id="bt"><option>No<option>Yes</select></label><label>Payment method<select id="bm" onchange="cq()"><option>Cash<option>Card<option>Bank transfer<option>Cheque<option>Credit (pay later)</select></label>${F('bpd','Amount paid now (blank = full for cash)','number')}</div><div id="cqf"></div><h2 id="tt"></h2><button class="b" onclick="confirmBill()">Confirm and print bill</button></div>`,
-cust:()=>`<div class="card"><h2>Customers</h2><p class="mu">Type a NIC, name or phone number in the top search bar.</p><div id="res" class="w"></div></div>`,
-pend:()=>{const a=S.bl.filter(b=>bal(b)>0&&!inC(b)),c=S.bl.filter(inC);return tabs('p',[['pend','Pending payments ('+a.length+')'],['chq','Bank cheques ('+c.length+')']])+`<div class="card w">${sub.p=='pend'?`<table><tr><th>Bill<th>Date<th>Customer<th>Phone<th>Total<th>Paid<th>Remaining<th></tr>${O(a,b=>`<tr><td>${b.no}<td>${b.d}<td>${b.c.n}<td>${b.c.p}<td>${f(b.total)}<td>${f(pd(b))}<td class="bad">${f(bal(b))}<td><button class="b s" onclick="rec('${b.no}')">Receive payment</button></tr>`)||'<tr><td>No pending payments.</tr>'}</table>`:`<table><tr><th>Bill<th>Customer<th>Bank<th>Cheque no<th>Cheque date<th>Amount<th></tr>${O(c,b=>`<tr><td>${b.no}<td>${b.c.n}<td>${b.ch.b}<td>${b.ch.no}<td>${b.ch.dt}<td>${f(b.ch.amt)}<td><button class="b s" onclick="chq('${b.no}')">Details</button></tr>`)||'<tr><td>No cheques waiting.</tr>'}</table>`}</div>`},
-stock:()=>`<div class="card w"><h2>Stock</h2><table><tr><th>Item<th>Section<th>In stock<th>Price<th></tr>${O(S.st,(s,i)=>`<tr><td>${s.n}<td>${s.c}<td class="${s.q<=s.r?'bad':''}">${s.q} ${s.u}${s.q<=s.r?' (low)':''}<td>${f(s.p)}<td><button class="b s" onclick="su(${i})">Update count</button> <button class="g s" onclick="sp_(${i})">Price</button></tr>`)}</table></div><div class="card"><h3>Add new stock item</h3><div class="fg">${F('xn','Name')}${F('xc','Section (Hardware / Concrete yard)')}${F('xq','Quantity','number')}${F('xu','Unit (pcs, bag)')}${F('xp','Selling price','number')}${F('xk','Cost price','number')}${F('xr','Low-stock alert at','number','10')}<button class="b" onclick="addS()">Add item</button></div></div><div class="card w"><h3>Stock history</h3><table><tr><th>Date<th>Item<th>Change<th>Reason</tr>${O(S.sl.slice(-15).reverse(),l=>`<tr><td>${l.d}<td>${l.n}<td>${l.dl}<td>${l.w}</tr>`)}</table></div>`,
-trans:()=>{const m={wait:'wait',out:'out',done:'done'},a=S.bl.filter(b=>b.tr==sub.t);return tabs('t',[['wait','Waiting for transport ('+S.bl.filter(b=>b.tr=='wait').length+')'],['out','On the way'],['done','Delivered'])+`<div class="card w"><table><tr><th>Bill<th>Customer<th>Phone<th>Deliver to<th>${sub.t=='wait'?'':'Driver / vehicle'}<th></tr>${O(a,b=>`<tr><td>${b.no}<td>${b.c.n}<td>${b.c.p}<td>${b.trp?b.trp.to:b.c.a||'-'}<td>${b.trp?b.trp.dr+' / '+b.trp.ve:''}<td>${sub.t=='wait'?`<button class="b s" onclick="dp('${b.no}')">Dispatch</button>`:sub.t=='out'?`<button class="b s" onclick="dl('${b.no}')">Confirm delivered</button>`:b.trp.done}</tr>`)||'<tr><td>Nothing here.</tr>'}</table></div>`},
-sal:()=>{const w=S.wk.filter(x=>x.t==sub.s);return tabs('s',[['daily','Day workers'],['fixed','Permanent workers']])+`<div class="card"><h3>Add ${sub.s=='daily'?'day':'permanent'} worker</h3><div class="fg">${F('wn','Name')}${F('wp','Phone','tel')}${F('wr','Pay per day (Rs.)','number')}<button class="b" onclick="addW()">Add worker</button></div></div>${O(w,x=>{const i=S.wk.indexOf(x),u=x.e.filter(e=>!e.p),g=u.filter(e=>x.t=='fixed'||e.rv).reduce((s,e)=>s+e.a,0),dd=Math.min(x.adv,g);return `<div class="card w"><h3>${x.n} <span class="mu">${x.p} | ${f(x.r)} per day</span></h3><p>Approved earnings: <b>${f(g)}</b> | Advance taken: <b>${f(x.adv)}</b> | To pay: <b class="ok">${f(g-dd)}</b></p><button class="g s" onclick="wk(${i})">Add work / attendance</button> <button class="g s" onclick="adv(${i})">Give advance</button> <button class="b s" onclick="pw_(${i})">${x.t=='daily'?'Pay now':'Release salary'}</button><table>${O(u,(e,j)=>`<tr><td>${e.d}<td>${e.u} day<td>${e.n}<td>${f(e.a)}<td>${x.t=='daily'&&!e.rv?`<button class="g s" onclick="apv(${i},${x.e.indexOf(e)})">Approve work</button>`:'Approved'}</tr>`)}</table></div>`})||'<div class="card">No workers yet.</div>'}<div class="card w"><h3>Salary payments</h3><table><tr><th>Date<th>Worker<th>Earned<th>Advance cut<th>Paid</tr>${O(S.pay.slice(-15).reverse(),p=>`<tr><td>${p.d}<td>${p.w}<td>${f(p.g)}<td>${f(p.ded)}<td>${f(p.net)}</tr>`)}</table></div>`},
-sup:()=>`<div class="card"><h2>Equipment, food and other supplies</h2><div class="fg">${F('un','Item')}<label>Type<select id="uc"><option>Equipment<option>Food<option>Fuel<option>Repairs<option>Other</select></label>${F('ua','Cost (Rs.)','number')}${F('uo','Note')}<button class="b" onclick="addU()">Save record</button></div><div class="w"><table><tr><th>Date<th>Item<th>Type<th>Cost<th>Note</tr>${O(S.sp.slice().reverse(),s=>`<tr><td>${s.d}<td>${s.n}<td>${s.c}<td>${f(s.a)}<td>${s.o}</tr>`)}</table></div></div>`,
-fleet:()=>`<div class="card"><h2>Drivers</h2><div class="fg">${F('dn','Name')}${F('dpn','Phone','tel')}${F('dl','Licence no')}<button class="b" onclick="addF('d',['dn','dpn','dl'])">Add driver</button></div>${O(S.fl.d,d=>`<p>${d.a} | ${d.b} | ${d.c}</p>`)}</div><div class="card"><h2>Assistants</h2><div class="fg">${F('an','Name')}${F('ap','Phone','tel')}<button class="b" onclick="addF('a',['an','ap'])">Add assistant</button></div>${O(S.fl.a,d=>`<p>${d.a} | ${d.b}</p>`)}</div><div class="card"><h2>Vehicles</h2><div class="fg">${F('vn','Vehicle number')}${F('vt','Type (lorry, tipper)')}${F('vo','Note')}<button class="b" onclick="addF('v',['vn','vt','vo'])">Add vehicle</button></div>${O(S.fl.v,d=>`<p>${d.a} | ${d.b} | ${d.c}</p>`)}</div>`,
-fin:()=>{const bl=S.bl,sa=bl.reduce((s,b)=>s+b.total,0),co=bl.reduce((s,b)=>s+b.it.reduce((t,i)=>t+i.q*(i.k||0),0),0),cl=bl.reduce((s,b)=>s+pd(b),0),tf=bl.reduce((s,b)=>s+(b.trp?+b.trp.fee||0:0),0),sl=S.pay.reduce((s,p)=>s+p.net,0),su=S.sp.reduce((s,p)=>s+p.a,0),ad=S.wk.reduce((s,w)=>s+w.adv,0),np=sa-co+tf-sl-su;return `<div class="card"><h2>Finance (private)</h2><div class="gr">${O([['Total sales',sa],['Money collected',cl],['Still to collect',sa-cl],['Transport income',tf],['Cost of goods sold',co],['Salaries paid',sl],['Supplies spent',su],['Advances outstanding',ad],['Net profit',np]],x=>`<div class="card k"><b style="font-size:24px">${f(x[1])}</b>${x[0]}</div>`)}</div></div><div class="card w"><h3>Every sale</h3><table><tr><th>Bill<th>Date<th>Customer<th>Section<th>Total<th>Paid<th>Status</tr>${O(bl.slice().reverse(),b=>`<tr><td>${b.no}<td>${b.d}<td>${b.c.n}<td>${b.dv}<td>${f(b.total)}<td>${f(pd(b))}<td>${st(b)}</tr>`)}</table></div>`}};
-function pick(){const i=+v('si');if(i>=0)$('sp').value=S.st[i].p}
-function addI(){const i=+v('si'),q=+v('sq'),n=i>=0?S.st[i].n:v('sn'),p=+v('sp');if(!n||!q||!p)return alert('Enter item, quantity and price.');B.push({n,q,p,k:i>=0?S.st[i].k:0,s:i});$('sn').value='';rI()}
-function rI(){const s=B.reduce((t,i)=>t+i.q*i.p,0);$('il').innerHTML=`<table><tr><th>Item<th>Qty<th>Price<th>Amount<th></tr>${O(B,(i,j)=>`<tr><td>${i.n}<td>${i.q}<td>${f(i.p)}<td>${f(i.q*i.p)}<td><button class="g s" onclick="B.splice(${j},1);rI()">Remove</button></tr>`)}</table>`;$('tt').textContent='Total: '+f(Math.max(s-(+v('bx')||0),0))}
-function cq(){$('cqf').innerHTML=v('bm')=='Cheque'?`<div class="fg">${F('cb','Bank name')}${F('cbr','Branch')}${F('cn','Cheque number')}${F('cd','Cheque date','date')}${F('ch','Account holder name')}</div>`:''}
-function confirmBill(){const nm=v('bn'),pn=v('bp');if(!nm||!pn||!B.length)return alert('Enter customer name, phone and at least one item.');const sub=B.reduce((s,i)=>s+i.q*i.p,0),dc=+v('bx')||0,total=Math.max(sub-dc,0),m=v('bm');let pa=v('bpd')===''?(m=='Cash'||m=='Card'||m=='Bank transfer'?total:0):+v('bpd');pa=Math.min(pa,total);if(m=='Cheque'&&(!v('cb')||!v('cn')))return alert('Enter the cheque bank and cheque number.');const lw=B.filter(i=>i.s>=0&&S.st[i.s].q<i.q);if(lw.length&&!confirm('Stock is lower than the quantity for: '+lw.map(i=>i.n).join(', ')+'. Continue?'))return;
-const b={no:'KG-'+String(S.n++).padStart(5,'0'),d:D(),t:new Date().toLocaleTimeString(),c:{n:nm,i:v('bi'),p:pn,a:v('ba')},dv:v('bd'),it:B.map(i=>({n:i.n,q:i.q,p:i.p,k:i.k})),dc,total,m,pays:pa?[{d:D(),a:pa,m}]:[],tr:v('bt')=='Yes'?'wait':'No',ch:m=='Cheque'?{b:v('cb'),br:v('cbr'),no:v('cn'),dt:v('cd'),h:v('ch'),amt:total-pa,st:'Pending'}:null},k=(b.c.i||pn).toUpperCase();b.k=k;
-B.forEach(i=>{if(i.s>=0){S.st[i.s].q-=i.q;S.sl.push({d:D(),n:i.n,dl:-i.q,w:'Sold on '+b.no})}});S.cu[k]={n:nm,i:b.c.i,p:pn,a:b.c.a,since:S.cu[k]?S.cu[k].since:D()};S.bl.push(b);P();B=[];go('bill');showBill(b)}
-const txt=b=>{const w=74,Ln='-'.repeat(w),r=(s,n)=>String(s).padStart(n),l=(s,n)=>String(s).padEnd(n).slice(0,n),o=[l('KAWYA GROUP',40)+'BILL '+b.no,'Concrete Yard | Hardware | Transport',l('',40)+'Date: '+b.d+' '+b.t,Ln,'Customer: '+b.c.n,'NIC: '+(b.c.i||'-')+'   Phone: '+b.c.p,'Address: '+(b.c.a||'-'),'Section: '+b.dv,Ln,l('Item',34)+r('Qty',6)+r('Price',14)+r('Amount',16),Ln];b.it.forEach(i=>o.push(l(i.n,34)+r(i.q,6)+r(i.p.toFixed(2),14)+r((i.q*i.p).toFixed(2),16)));o.push(Ln);if(b.dc)o.push(r('Discount: -'+b.dc.toFixed(2),w));o.push(r('TOTAL: '+f(b.total),w),r('Paid: '+f(pd(b)),w),r('BALANCE DUE: '+f(bal(b)),w),Ln,'Payment: '+b.m+(b.ch?' (Cheque '+b.ch.no+', '+b.ch.b+')':''),'Our transport: '+(b.tr=='No'?'No':'Yes'),'Goods once sold will not be taken back. Thank you!');return o.join('\n')};
-function showBill(b){M(`<pre id="pb">${txt(b)}</pre><p class="mu">Print opens the printer dialog: choose the Epson LQ-310, or Save as PDF.</p><button class="b" onclick="window.print()">Print / Save PDF</button> <button class="g" onclick="waB('${b.no}')">Send on WhatsApp</button>`)}
+if(!S)S=DEF();fix();
+const P=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const pd=b=>b.pays.reduce((s,p)=>s+p.a,0),bal=b=>b.total-pd(b),inC=b=>b.m=='Cheque'&&b.ch&&b.ch.st=='Pending',
+phn=n=>{n=String(n).replace(/\D/g,'');return n[0]=='0'?'94'+n.slice(1):n},
+waL=(p,t,l,c='b')=>`<a class="${c}" href="https://wa.me/${phn(p)}?text=${encodeURIComponent(t)}" target="_blank" rel="noopener">${l}</a>`;
 const bn_=n=>S.bl.find(b=>b.no==n);
-function waB(n){const b=bn_(n);wa(b.c.p,`Kawya Group - Bill ${b.no} (${b.d})\nHello ${b.c.n}, thank you for your purchase.\n`+b.it.map(i=>`${i.n} x ${i.q} = ${f(i.q*i.p)}`).join('\n')+`\nTotal: ${f(b.total)}\nPaid: ${f(pd(b))} (${b.m})\nBalance: ${f(bal(b))}\nOur transport: ${b.tr=='No'?'No':'Yes'}`)}
-function rc(){const q=Q.toLowerCase(),a=Object.entries(S.cu).filter(([k,c])=>(c.n+c.i+c.p).toLowerCase().includes(q));$('res').innerHTML=`<table><tr><th>Name<th>NIC<th>Phone<th>Billed<th>Owes<th></tr>${O(a,([k,c])=>{const bs=S.bl.filter(b=>b.k==k);return `<tr><td>${c.n}<td>${c.i||'-'}<td>${c.p}<td>${f(bs.reduce((s,b)=>s+b.total,0))}<td class="bad">${f(bs.reduce((s,b)=>s+bal(b),0))}<td><button class="b s" onclick="cp('${k}')">Full details</button></tr>`})||'<tr><td>No customer found.</tr>'}</table>`}
-function cp(k){const c=S.cu[k],bs=S.bl.filter(b=>b.k==k);M(`<h2>${c.n}</h2><p>NIC: ${c.i||'-'} | Phone: ${c.p}<br>Address: ${c.a||'-'}<br>Customer since: ${c.since}<br>Bills: ${bs.length} | Total billed: ${f(bs.reduce((s,b)=>s+b.total,0))} | Paid: ${f(bs.reduce((s,b)=>s+pd(b),0))} | Owes: <b class="bad">${f(bs.reduce((s,b)=>s+bal(b),0))}</b></p>${O(bs.slice().reverse(),b=>`<div class="card"><b>${b.no}</b> on ${b.d} ${st(b)}<br>${b.it.map(i=>i.n+' x '+i.q).join(', ')}<br>Total ${f(b.total)} | ${b.m}<br>Payments: ${b.pays.map(p=>p.d+' '+f(p.a)).join(', ')||'none yet'}<br>Transport: ${b.tr=='No'?'not needed':b.tr=='wait'?'waiting':b.tr=='out'?'on the way':'delivered '+b.trp.done}<br><button class="g s" onclick="showBill(bn_('${b.no}'))">View / reprint bill</button></div>`)}`)}
-function rec(n){const b=bn_(n),a=+prompt('Amount received (remaining '+f(bal(b))+')');if(!a||a<=0)return;b.pays.push({d:D(),a:Math.min(a,bal(b)),m:'Cash'});P();render()}
-function chq(n){const b=bn_(n),c=b.ch;M(`<h2>Cheque details</h2><p>Bill: ${b.no}<br>Customer: ${b.c.n} (${b.c.p})<br>Bank: ${c.b}<br>Branch: ${c.br||'-'}<br>Cheque number: ${c.no}<br>Cheque date: ${c.dt||'-'}<br>Account holder: ${c.h||'-'}<br>Amount: ${f(c.amt)}<br>Bill total: ${f(b.total)}</p><button class="b" onclick="chs('${n}',1)">Cheque cleared</button> <button class="g" onclick="chs('${n}',0)">Cheque returned</button>`)}
-function chs(n,ok){const b=bn_(n);if(ok){b.ch.st='Cleared';b.pays.push({d:D(),a:b.ch.amt,m:'Cheque'})}else b.ch.st='Returned';P();X();render()}
-function su(i){const s=S.st[i],n=prompt('Counted quantity for '+s.n+' (now '+s.q+')');if(n===null||n===''||isNaN(n))return;const a=prompt('Stock agent name?')||'agent';S.sl.push({d:D(),n:s.n,dl:n-s.q,w:'Agent count by '+a});s.q=+n;P();render()}
-function sp_(i){const n=prompt('New selling price',S.st[i].p);if(n&&!isNaN(n)){S.st[i].p=+n;P();render()}}
-function addS(){if(!v('xn'))return;S.st.push({n:v('xn'),c:v('xc'),q:+v('xq'),u:v('xu'),p:+v('xp'),k:+v('xk'),r:+v('xr')});P();render()}
-function dp(n){const b=bn_(n),o=(a,k)=>O(a,x=>`<option>${x[k]}`);M(`<h2>Dispatch ${n}</h2><div class="fg">${F('fr','From','text','Kawya Group yard')}${F('to','To','text',b.c.a)}${F('fe','Transport fee (Rs.)','number')}<label>Driver<select id="dr">${o(S.fl.d.map(x=>[x.a]),0)}</select></label><label>Assistant<select id="as"><option>None${o(S.fl.a.map(x=>[x.a]),0)}</select></label><label>Vehicle<select id="ve">${o(S.fl.v.map(x=>[x.a]),0)}</select></label></div><button class="b" onclick="disp('${n}')">Dispatch and prepare messages</button>`)}
-function disp(n){const b=bn_(n),d=S.fl.d.find(x=>x.a==v('dr'))||{a:'-',b:'-'},a=S.fl.a.find(x=>x.a==v('as'))||{a:'-',b:'-'};b.trp={fr:v('fr'),to:v('to'),fee:+v('fe')||0,dr:d.a,dph:d.b,as:a.a,aph:a.b,ve:v('ve')};b.tr='out';P();render();M(`<h2>Dispatched</h2><p>Send the messages:</p><button class="b" onclick="wa('${b.c.p}',\`Kawya Group: Hello ${b.c.n}, your order ${b.no} has left our yard.\\nVehicle: ${b.trp.ve}\\nDriver: ${d.a} (${d.b})\\nAssistant: ${a.a}\\nDelivering to: ${b.trp.to}\\nTransport fee: ${f(b.trp.fee)}\`)">WhatsApp customer</button> <button class="g" onclick="wa('${d.b}',\`Delivery job ${b.no}\\nCustomer: ${b.c.n}, ${b.c.p}\\nFrom: ${b.trp.fr}\\nTo: ${b.trp.to}\\nItems: ${b.it.map(i=>i.n+' x '+i.q).join(', ')}\\nBalance to collect: ${f(bal(b))}\\nVehicle: ${b.trp.ve}\`)">WhatsApp driver</button>`)}
-function dl(n){bn_(n).tr='done';bn_(n).trp.done=D();P();render()}
-function addW(){if(!v('wn'))return;S.wk.push({n:v('wn'),p:v('wp'),t:sub.s,r:+v('wr')||0,adv:0,e:[]});P();render()}
-function wk(i){const w=S.wk[i],u=+prompt('Days worked (1, 0.5, 2...)','1');if(!u)return;const n=prompt('Work done')||'',a=+prompt('Amount (Rs.)',u*w.r);w.e.push({d:D(),u,n,a,rv:w.t=='fixed',p:0});P();render()}
+/* ---------- icons ---------- */
+const IC={dash:'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',bill:'M6 3h9l4 4v14H6zM9 12h7M9 16h7',cust:'M16 20v-2a4 4 0 00-8 0v2M12 12a3 3 0 100-6 3 3 0 000 6',pend:'M12 7v5l3 2M12 21a9 9 0 100-18 9 9 0 000 18',stock:'M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10',trans:'M2 6h12v10H2zM14 10h4l3 3v3h-7M6 19a2 2 0 100-4 2 2 0 000 4M17 19a2 2 0 100-4 2 2 0 000 4',sal:'M3 7h16a2 2 0 012 2v9a2 2 0 01-2 2H3zM3 7l12-3v3M16 13h3',sup:'M5 8h14l-1 12H6zM9 8a3 3 0 016 0',fleet:'M12 21a9 9 0 100-18 9 9 0 000 18M12 12v9M3 12h18',fin:'M4 20V10M10 20V4M16 20v-8M22 20H2',
+search:'M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3',bell:'M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 003.4 0',gear:'M12 15a3 3 0 100-6 3 3 0 000 6zM19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z',
+plus:'M12 5v14M5 12h14',left:'M15 18l-6-6 6-6',right:'M9 18l6-6-6-6',sun:'M12 17a5 5 0 100-10 5 5 0 000 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4',moon:'M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z',card:'M2 6h20v12H2zM2 10h20'};
+const ic=(n,c='i')=>`<svg class="${c}" viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
+const T=[['home','Dashboard','dash'],['bill','New bill','bill'],['cust','Customers','cust'],['pend','Payments','pend'],['stock','Stock','stock'],['trans','Transport','trans'],['sal','Salary','sal'],['sup','Supplies','sup'],['fleet','Fleet','fleet'],['fin','Finance','fin']];
+/* illustrations (original flat shapes) */
+const L='#d9f36b',Y='#f3b63f',DK='#1a1a1a',sk=`stroke="${DK}" stroke-width="2"`;
+const ILL={
+yard:`<svg viewBox="0 0 130 110"><rect x="12" y="54" width="48" height="34" rx="6" fill="${L}" ${sk}/><rect x="50" y="28" width="48" height="34" rx="6" fill="${Y}" ${sk}/><rect x="60" y="68" width="48" height="26" rx="6" fill="#fff" ${sk}/><circle cx="106" cy="26" r="9" fill="${DK}"/><path d="M20 70h32M60 44h32M68 81h32" stroke="${DK}" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 5"/></svg>`,
+hw:`<svg viewBox="0 0 130 110"><circle cx="58" cy="58" r="34" fill="${Y}" ${sk}/><path d="M34 46c14 8 34 8 48 0M30 62c18 10 44 10 60 0" fill="none" ${sk}/><path d="M96 14l22 38H74z" fill="${L}" ${sk}/><circle cx="22" cy="24" r="8" fill="${DK}"/><rect x="88" y="66" width="28" height="12" rx="6" fill="#fff" ${sk}/></svg>`,
+tr:`<svg viewBox="0 0 130 110"><rect x="8" y="36" width="64" height="40" rx="6" fill="${L}" ${sk}/><path d="M72 48h22l18 18v10H72z" fill="${Y}" ${sk}/><path d="M82 54h10l9 10H82z" fill="#fff"/><circle cx="30" cy="80" r="11" fill="${DK}"/><circle cx="30" cy="80" r="4" fill="#fff"/><circle cx="96" cy="80" r="11" fill="${DK}"/><circle cx="96" cy="80" r="4" fill="#fff"/><circle cx="24" cy="18" r="7" fill="${DK}"/></svg>`,
+cu:`<svg viewBox="0 0 130 110"><circle cx="46" cy="38" r="16" fill="${Y}" ${sk}/><path d="M16 94a30 30 0 0160 0z" fill="${L}" ${sk}/><circle cx="94" cy="46" r="12" fill="#fff" ${sk}/><path d="M72 94a22 22 0 0144 0z" fill="${DK}"/><path d="M96 14v10M88 18l4 8M104 18l-4 8" stroke="${DK}" stroke-width="2" stroke-linecap="round"/></svg>`};
+/* ---------- small UI pieces ---------- */
+const F=(id,l,t='text',val='',x='')=>`<label>${l}<input id="${id}" type="${t}" value="${E(val)}" ${x}></label>`,
+M=h=>{$('mdl').innerHTML='<div class="mb" onclick="if(event.target==this)X()"><div class="mc">'+h+'<div class="acts"><button class="g" onclick="X()">Close</button></div></div></div>'},
+X=()=>{$('mdl').innerHTML=''},
+toast=m=>{const t=$('toast');t.textContent=m;t.className='toast on';clearTimeout(toast.h);toast.h=setTimeout(()=>{t.className='toast'},3400)},
+hd=(t,p)=>`<div class="ph"><h1>${t}</h1><p>${p}</p></div>`,
+tr=a=>'<tr>'+a.map(x=>`<td>${x}</td>`).join('')+'</tr>',
+tbl=(h,rows,empty)=>`<div class="w"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows||`<tr><td colspan="${h.length}" class="mu">${empty}</td></tr>`}</table></div>`,
+kp=(l,n,sm)=>`<div class="kp"><b${sm?' style="font-size:20px"':''}>${n}</b><span>${l}</span></div>`;
+function ask(title,fields,ok,btn='Save',note=''){M(`<h2>${title}</h2>${note?`<p class="mu">${note}</p>`:''}<div class="fg">${fields.map(x=>F(x[0],x[1],x[2],x[3])).join('')}</div><button class="b" id="askok">${btn}</button>`);$('askok').onclick=ok}
+function sure(msg,fn,btn='Yes, continue'){M(`<h2>Please confirm</h2><p>${msg}</p><button class="b" id="sureok">${btn}</button>`);$('sureok').onclick=()=>{X();fn()}}
+function th(m){document.documentElement.dataset.theme=m;try{localStorage.setItem('kawya-theme',m)}catch(e){}}
+(()=>{let m=null;try{m=localStorage.getItem('kawya-theme')}catch(e){}th(m||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));document.querySelectorAll('[data-ic]').forEach(e=>{e.outerHTML=ic(e.dataset.ic)})})();
+const go=t=>{tab=t;render();scrollTo(0,0)};
+/* ---------- notifications ---------- */
+const notes=()=>{const n=[],t=D();
+ S.st.filter(s=>s.q<=s.r).forEach(s=>n.push({t:'Low stock',d:`${E(s.n)}: only ${s.q} ${E(s.u)} left`,m:'Alert level '+s.r,g:'stock'}));
+ S.bl.filter(inC).forEach(b=>n.push({t:b.ch.dt&&b.ch.dt<=t?'Cheque ready to deposit':'Cheque waiting',d:`${E(b.c.n)} · ${E(b.ch.b)} · ${f(b.ch.amt)}`,m:b.ch.dt?'Cheque date '+b.ch.dt:'No cheque date',g:'pend'}));
+ S.bl.filter(b=>b.tr=='wait').forEach(b=>n.push({t:'Waiting for transport',d:`${b.no} · ${E(b.c.n)}`,m:E(b.c.a)||'No address',g:'trans'}));
+ const pn=S.bl.filter(b=>bal(b)>0&&!inC(b));if(pn.length)n.push({t:'Pending payments',d:`${pn.length} bill${pn.length>1?'s':''} · ${f(pn.reduce((s,b)=>s+bal(b),0))} to collect`,m:'Payments',g:'pend'});
+ return n};
+const nt=x=>`<div class="nt" onclick="X();go('${x.g}')"><b>${x.t}</b><p>${x.d}</p><small>${x.m}</small></div>`;
+function showNotes(){const n=notes();M('<h2>Notifications</h2>'+(O(n,nt)||'<p class="mu">Nothing needs your attention right now.</p>'))}
+/* ---------- layout ---------- */
+const badge=k=>k=='pend'?S.bl.filter(b=>bal(b)>0).length:k=='trans'?S.bl.filter(b=>b.tr=='wait').length:0;
+const SUB={pend:['p',()=>[['pend','Pending payments ('+S.bl.filter(b=>bal(b)>0&&!inC(b)).length+')'],['chq','Bank cheques ('+S.bl.filter(inC).length+')']]],
+ trans:['t',()=>[['wait','Waiting for transport ('+S.bl.filter(b=>b.tr=='wait').length+')'],['out','On the way ('+S.bl.filter(b=>b.tr=='out').length+')'],['done','Delivered ('+S.bl.filter(b=>b.tr=='done').length+')']]],
+ sal:['s',()=>[['daily','Day workers'],['fixed','Permanent workers']]]};
+function render(){
+ $('nav').innerHTML=O(T,t=>{const n=badge(t[0]);return `<button class="${tab==t[0]?'on':''}" onclick="go('${t[0]}')">${ic(t[2])}<span>${t[1]}</span>${n?`<em>${n}</em>`:''}</button>`});
+ const s=SUB[tab],cur=T.find(x=>x[0]==tab);
+ $('tabs').innerHTML=s?O(s[1](),x=>`<button class="tab ${sub[s[0]]==x[0]?'on':''}" onclick="sub['${s[0]}']='${x[0]}';render()">${x[1]}</button>`):`<button class="tab on">${ic(cur[2])}${cur[1]}</button>`;
+ $('bdot').style.display=notes().length?'block':'none';
+ $('main').innerHTML=V[tab]();
+ if(tab=='cust')rc();if(tab=='bill')rI()}
+const st=b=>inC(b)?'<span class="tg wn">Cheque pending</span>':bal(b)>0?'<span class="tg bad">Pending '+f(bal(b))+'</span>':'<span class="tg ok">Paid</span>';
+const ring=(p,c='var(--yel)')=>{const r=26,k=2*Math.PI*r;return `<svg viewBox="0 0 62 62" width="62" height="62"><circle cx="31" cy="31" r="${r}" fill="none" stroke="var(--ln)" stroke-width="5"/><circle cx="31" cy="31" r="${r}" fill="none" stroke="${c}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${k*p/100} ${k}" transform="rotate(-90 31 31)"/><text x="31" y="36" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor" font-family="Urbanist">${p}%</text></svg>`};
+/* ---------- pages ---------- */
+const V={
+home(){
+ const h=new Date().getHours(),gr=h<12?'Good morning':h<17?'Good afternoon':'Good evening',cnt=w=>S.st.filter(s=>s.c.toLowerCase().includes(w)).length;
+ const cards=[['Concrete yard',cnt('concrete')+' stock items','stock',ILL.yard],['Hardware',cnt('hardware')+' stock items','stock',ILL.hw],['Transport',S.bl.filter(b=>b.tr=='wait').length+' waiting','trans',ILL.tr],['Customers',Object.keys(S.cu).length+' saved','cust',ILL.cu]];
+ const tot=S.bl.reduce((s,b)=>s+b.total,0),col=S.bl.reduce((s,b)=>s+pd(b),0),p1=tot?Math.round(col/tot*100):0,
+  trb=S.bl.filter(b=>b.tr!='No'),dn=trb.filter(b=>b.tr=='done').length,p2=trb.length?Math.round(dn/trb.length*100):0,
+  low=S.st.filter(s=>s.q<=s.r).length,p3=S.st.length?Math.round((S.st.length-low)/S.st.length*100):100;
+ const rg=[['Sales','Collected',p1,`${f(col)} of ${f(tot)}`,'pend'],['Transport','Deliveries',p2,`${dn} of ${trb.length} delivered`,'trans'],['Stock','Stock health',p3,low?`${low} item${low>1?'s':''} running low`:'All items fine','stock']];
+ const tasks=[];
+ S.bl.filter(b=>bal(b)>0&&!inC(b)).slice().reverse().forEach(b=>tasks.push({a:`Collect ${f(bal(b))} from ${E(b.c.n)}`,tag:'Bill '+b.no,c:'cr',lv:'Payment due',w:E(b.c.p),g:'pend'}));
+ S.bl.filter(b=>b.tr=='wait').slice().reverse().forEach(b=>tasks.push({a:`Dispatch order ${b.no} to ${E(b.c.a||b.c.n)}`,tag:'Transport',c:'bl',lv:'Waiting',w:E(b.c.n),g:'trans'}));
+ S.st.filter(s=>s.q<=s.r).forEach(s=>tasks.push({a:`Restock ${E(s.n)}`,tag:'Low stock',c:'ro',lv:'Low',w:`${s.q} ${E(s.u)} left`,g:'stock'}));
+ const tk=tasks.slice(0,2);
+ const rb=S.bl.slice(-4).reverse();
+ const days=(()=>{const n=new Date(),m=new Date(n);m.setDate(n.getDate()-((n.getDay()+6)%7)+wo*7);return [...Array(7)].map((_,i)=>{const d=new Date(m);d.setDate(m.getDate()+i);return d})})(),
+  a0=ymd(days[0]),a6=ymd(days[6]),chq=S.bl.filter(inC).filter(b=>b.ch.dt),
+  wkc=chq.filter(b=>b.ch.dt>=a0&&b.ch.dt<=a6).sort((x,y)=>x.ch.dt<y.ch.dt?-1:1),
+  nx=S.bl.filter(inC).sort((x,y)=>(x.ch.dt||'9999')<(y.ch.dt||'9999')?-1:1)[0],nn=notes();
+ return `<div class="hero-row"><div class="hero"><h1>${gr}!<br>What do you want to <span class="hl">sell</span> today?</h1><p>Bill customers, track stock and send deliveries, all in one place.</p></div>
+ <div class="cards"><button class="mini new" onclick="go('bill')" title="New bill"><i>${ic('plus')}</i></button>${O(cards,c=>`<button class="mini" onclick="go('${c[2]}')">${c[3]}<b>${c[0]}</b><span>${c[1]}</span></button>`)}</div></div>
+ <div class="dash"><div>
+  <div class="rings">${O(rg,r=>`<div class="ring"><div>${ring(r[2])}</div><div><small>${r[0]}</small><b>${r[1]}</b></div><div class="ft"><span>${r[3]}</span><button class="b s" onclick="go('${r[4]}')">Open</button></div></div>`)}</div>
+  <div class="card"><div class="sh"><h3>Needs action <span class="mu" style="font-size:14px">${tasks.length?'· '+tasks.length:''}</span></h3></div>
+   ${tk.length?`<div class="todo">${O(tk,(x,i)=>`<div class="tk ${i?'':'dk'}" onclick="go('${x.g}')"><div class="t1"><span>${x.a}</span><span class="lv">${x.lv}</span></div><div class="t2"><span class="pl ${x.c}">${x.tag}</span><span>${x.w}</span></div></div>`)}</div>`:`<div class="tk" style="min-height:90px"><div class="t1">All caught up. Nothing is waiting for you.</div></div>`}</div>
+  <div class="card"><div class="sh"><h3>Recent bills</h3><a onclick="go('cust')">All customers</a></div>
+   ${O(rb,b=>{const p=b.total?Math.round(pd(b)/b.total*100):100;return `<div class="row"><div class="th">${ic('bill')}</div><div><b>${b.no}</b> · ${E(b.c.n)}<small>${b.d} ${E(b.t||'')} · ${E(b.dv)}</small></div><div class="am"><small>Total</small><b>${f(b.total)}</b></div><div class="pg"><small>${p}% paid · ${b.m}</small><div class="bar2"><i style="width:${p}%"></i></div></div><button class="g s" onclick="showBill(bn_('${b.no}'))">View</button></div>`})}
+   <button class="add" onclick="go('bill')"><i>${ic('plus')}</i>Add new bill</button></div>
+ </div><div>
+  <div class="card"><div class="chead"><h3>${days[3].toLocaleString('en-US',{month:'long',year:'numeric'})}</h3><div class="arr"><button onclick="wo--;render()">${ic('left')}</button><button onclick="wo++;render()">${ic('right')}</button></div></div>
+   <div class="wkd">${O(days,d=>{const k=ymd(d);return `<div class="${k==D()?'td':''}">${d.toLocaleString('en-US',{weekday:'short'})}<span>${d.getDate()}${chq.some(b=>b.ch.dt==k)?'<i></i>':''}</span></div>`})}</div>
+   ${O(wkc,b=>`<div class="ev"><div class="ec">${ic('card')}</div><div><b>Cheque ${E(b.ch.no)} · ${f(b.ch.amt)}</b><small>${b.ch.dt} · ${E(b.c.n)} · ${E(b.ch.b)}</small></div></div>`)||'<div class="ev"><small>No cheques dated in this week.</small></div>'}</div>
+  <div class="card"><div class="sh"><h3>Notifications</h3>${nn.length&&!hideN?'<a onclick="hideN=true;render()">Clear</a>':hideN?'<a onclick="hideN=false;render()">Show</a>':''}</div>
+   ${hideN?'<p class="mu">Cleared for now.</p>':O(nn.slice(0,3),nt)||'<p class="mu">Nothing needs your attention.</p>'}${!hideN&&nn.length>3?`<a class="mu" style="cursor:pointer;font-weight:600" onclick="showNotes()">View all ${nn.length}</a>`:''}</div>
+  <div class="card"><div class="sh"><h3>Next cheque</h3></div>${nx?`<p style="margin:0 0 4px"><b>${E(nx.c.n)}</b> · ${f(nx.ch.amt)}</p><p class="mu" style="margin:0 0 14px;font-size:13px">${E(nx.ch.b)} · No. ${E(nx.ch.no)} · ${nx.ch.dt||'no date'}</p><div class="acts" style="display:flex;gap:8px"><button class="g" onclick="chq('${nx.no}')">Details</button><button class="b" onclick="chs('${nx.no}',1)">Cleared</button></div>`:'<p class="mu" style="margin:0">No bank cheques waiting.</p>'}</div>
+ </div></div>`},
+bill(){return hd('New bill','Fill in the customer and items, then confirm to print the bill.')+`<div class="card"><div class="sec">Customer</div><div class="fg">${F('bn','Customer name')}${F('bi','NIC number')}${F('bp','Phone (WhatsApp)','tel')}${F('ba','Address or site location')}<label>Section<select id="bd"><option>Concrete yard<option>Hardware<option>Transport service</select></label></div>
+ <div class="sec">Items</div><div class="fg"><label>Stock item<select id="si" onchange="pick()"><option value="-1">Other (type name)${O(S.st,(s,i)=>`<option value="${i}">${E(s.n)} (${s.q} left)`)}</select></label>${F('sn','Item name (if other)')}${F('sq','Quantity','number','1')}${F('sp','Unit price','number')}<button class="b" onclick="addI()">${ic('plus')}Add item</button></div><div id="il" class="w"></div>
+ <div class="sec" style="margin-top:18px">Payment</div><div class="fg">${F('bx','Discount (Rs.)','number','0','oninput="rI()"')}<label>Our transport needed?<select id="bt"><option>No<option>Yes</select></label><label>Payment method<select id="bm" onchange="cq()"><option>Cash<option>Card<option>Bank transfer<option>Cheque<option>Credit (pay later)</select></label>${F('bpd','Amount paid now (blank = full for cash)','number')}</div><div id="cqf"></div>
+ <h2 class="btot" id="btot"></h2><button class="d" onclick="confirmBill()">Confirm and print bill</button></div>`},
+cust(){return hd('Customers','Type a NIC, name or phone number in the search bar at the top.')+`<div class="card"><div id="res"></div></div>`},
+pend(){const a=S.bl.filter(b=>bal(b)>0&&!inC(b)),c=S.bl.filter(inC);
+ return hd('Payments','Money still to collect and cheques waiting for the bank.')+`<div class="gr">${kp('To collect (bills)',f(a.reduce((s,b)=>s+bal(b),0)))}${kp('Cheques waiting',f(c.reduce((s,b)=>s+b.ch.amt,0)))}</div><div class="card">${sub.p=='pend'?
+ tbl(['Bill','Date','Customer','Phone','Total','Paid','Remaining',''],O(a.slice().reverse(),b=>tr([b.no,b.d,E(b.c.n),E(b.c.p),f(b.total),f(pd(b)),`<b class="bad">${f(bal(b))}</b>`,`<button class="b s" onclick="rec('${b.no}')">Receive payment</button>`])),'No pending payments.')
+ :tbl(['Bill','Customer','Bank','Cheque no','Cheque date','Amount',''],O(c.slice().reverse(),b=>tr([b.no,E(b.c.n),E(b.ch.b),E(b.ch.no),b.ch.dt||'-',f(b.ch.amt),`<button class="b s" onclick="chq('${b.no}')">Details</button>`])),'No cheques waiting.')}</div>`},
+stock(){return hd('Stock','Update counts after the stock agent checks, and see every change.')+`<div class="card">${tbl(['Item','Section','In stock','Price','Cost',''],O(S.st,(s,i)=>tr([E(s.n),E(s.c),`<span class="${s.q<=s.r?'bad':''}">${s.q} ${E(s.u)}${s.q<=s.r?' (low)':''}</span>`,f(s.p),f(s.k),`<button class="b s" onclick="su(${i})">Update count</button> <button class="g s" onclick="spr(${i})">Price</button>`])),'No stock items yet.')}</div>
+ <div class="card"><h3>Add new stock item</h3><div class="fg">${F('xn','Name')}${F('xc','Section (Hardware / Concrete yard)')}${F('xq','Quantity','number')}${F('xu','Unit (pcs, bag)')}${F('xp','Selling price','number')}${F('xk','Cost price','number')}${F('xr','Low-stock alert at','number','10')}<button class="b" onclick="addS()">Add item</button></div></div>
+ <div class="card"><h3>Stock history</h3>${tbl(['Date','Item','Change','Reason'],O(S.sl.slice(-15).reverse(),l=>tr([l.d,E(l.n),l.dl>0?'+'+l.dl:l.dl,E(l.w)])),'No changes yet.')}</div>`},
+trans(){const a=S.bl.filter(b=>b.tr==sub.t).slice().reverse();
+ return hd('Transport','Orders waiting for our vehicle, on the way, and delivered.')+`<div class="card">${tbl(['Bill','Customer','Phone','Deliver to','Driver / vehicle','Fee',''],O(a,b=>tr([b.no,E(b.c.n),E(b.c.p),E(b.trp?b.trp.to:b.c.a||'-'),b.trp?E(b.trp.dr)+' / '+E(b.trp.ve):'-',b.trp?f(b.trp.fee):'-',sub.t=='wait'?`<button class="b s" onclick="dp('${b.no}')">Dispatch</button>`:sub.t=='out'?`<button class="b s" onclick="dl('${b.no}')">Confirm delivered</button> <button class="g s" onclick="msgs('${b.no}')">Messages</button>`:'Delivered '+b.trp.done])),'Nothing here.')}</div>`},
+sal(){const w=S.wk.filter(x=>x.t==sub.s);
+ return hd('Salary',sub.s=='daily'?'Day workers: add the work, approve it, then pay.':'Permanent workers: add each day, then release the salary on the fixed date.')+`<div class="card"><h3>Add ${sub.s=='daily'?'day':'permanent'} worker</h3><div class="fg">${F('wn','Name')}${F('wp','Phone','tel')}${F('wr','Pay per day (Rs.)','number')}<button class="b" onclick="addW()">Add worker</button></div></div>`+
+ (O(w,x=>{const i=S.wk.indexOf(x),u=x.e.filter(e=>!e.p),ok=e=>x.t=='fixed'||e.rv,g=u.filter(ok).reduce((s,e)=>s+e.a,0),wt=u.filter(e=>!ok(e)).reduce((s,e)=>s+e.a,0),dd=Math.min(x.adv,g);
+  return `<div class="card"><div class="sh"><h3>${E(x.n)} <span class="mu" style="font-size:13px;font-weight:500">${E(x.p)} · ${f(x.r)} per day</span></h3></div><div class="gr" style="margin-bottom:12px">${kp('Approved earnings',f(g),1)}${kp('Waiting for approval',f(wt),1)}${kp('Advance taken',f(x.adv),1)}${kp('To pay',`<span class="ok">${f(g-dd)}</span>`,1)}</div>
+  <div class="acts" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"><button class="g s" onclick="wk(${i})">Add work / attendance</button><button class="g s" onclick="adv(${i})">Give advance</button><button class="b s" onclick="paySal(${i})">${x.t=='daily'?'Pay now':'Release salary'}</button></div>
+  ${tbl(['Date','Days','Work','Amount',''],O(u,e=>tr([e.d,e.u,E(e.n),f(e.a),ok(e)?'<span class="tg ok">Approved</span>':`<button class="g s" onclick="apv(${i},${x.e.indexOf(e)})">Approve work</button>`])),'No unpaid work.')}</div>`})||'<div class="card mu">No workers yet.</div>')+
+ `<div class="card"><h3>Salary payments</h3>${tbl(['Date','Worker','Earned','Advance cut','Paid'],O(S.pay.slice(-15).reverse(),p=>tr([p.d,E(p.w),f(p.g),f(p.ded),f(p.net)])),'No payments yet.')}</div>`},
+sup(){return hd('Supplies','Equipment, food, fuel, repairs and other costs.')+`<div class="card"><div class="fg">${F('un','Item')}<label>Type<select id="uc"><option>Equipment<option>Food<option>Fuel<option>Repairs<option>Other</select></label>${F('ua','Cost (Rs.)','number')}${F('uo','Note')}<button class="b" onclick="addU()">Save record</button></div>${tbl(['Date','Item','Type','Cost','Note'],O(S.sp.slice().reverse(),s=>tr([s.d,E(s.n),E(s.c),f(s.a),E(s.o)])),'No records yet.')}</div>`},
+fleet(){return hd('Fleet','Drivers, assistants and vehicles used for deliveries.')+`<div class="card"><h3>Drivers</h3><div class="fg">${F('dn','Name')}${F('dpn','Phone','tel')}${F('dlc','Licence no')}<button class="b" onclick="addF('d',['dn','dpn','dlc'])">Add driver</button></div>${tbl(['Name','Phone','Licence'],O(S.fl.d,d=>tr([E(d.a),E(d.b),E(d.c)])),'No drivers yet.')}</div>
+ <div class="card"><h3>Assistants</h3><div class="fg">${F('an','Name')}${F('ap','Phone','tel')}<button class="b" onclick="addF('a',['an','ap'])">Add assistant</button></div>${tbl(['Name','Phone'],O(S.fl.a,d=>tr([E(d.a),E(d.b)])),'No assistants yet.')}</div>
+ <div class="card"><h3>Vehicles</h3><div class="fg">${F('vn','Vehicle number')}${F('vt','Type (lorry, tipper)')}${F('vo','Note')}<button class="b" onclick="addF('v',['vn','vt','vo'])">Add vehicle</button></div>${tbl(['Number','Type','Note'],O(S.fl.v,d=>tr([E(d.a),E(d.b),E(d.c)])),'No vehicles yet.')}</div>`},
+fin(){const bl=S.bl,sa=bl.reduce((s,b)=>s+b.total,0),co=bl.reduce((s,b)=>s+b.it.reduce((t,i)=>t+i.q*(i.k||0),0),0),cl=bl.reduce((s,b)=>s+pd(b),0),tf=bl.reduce((s,b)=>s+(b.trp?+b.trp.fee||0:0),0),sl=S.pay.reduce((s,p)=>s+p.net,0),sp=S.sp.reduce((s,p)=>s+p.a,0),ad=S.wk.reduce((s,w)=>s+w.adv,0),np=sa-co+tf-sl-sp;
+ return hd('Finance','Sales, collections, costs and profit.')+`<div class="gr">${[['Total sales',sa],['Money collected',cl],['Still to collect',sa-cl],['Transport income',tf],['Cost of goods sold',co],['Salaries paid',sl],['Supplies spent',sp],['Advances outstanding',ad],['Net profit',np]].map(x=>kp(x[0],f(x[1]),1)).join('')}</div>
+ <div class="card"><h3>Every sale</h3>${tbl(['Bill','Date','Customer','Section','Total','Paid','Status'],O(bl.slice().reverse(),b=>tr([b.no,b.d,E(b.c.n),E(b.dv),f(b.total),f(pd(b)),st(b)])),'No sales yet.')}</div>`}};
+/* ---------- billing ---------- */
+function pick(){const i=+v('si');if(i>=0)$('sp').value=S.st[i].p}
+function addI(){const i=+v('si'),q=+v('sq'),n=i>=0?S.st[i].n:v('sn'),p=+v('sp');if(!n||!q||!p)return toast('Enter item, quantity and price.');B.push({n,q,p,k:i>=0?S.st[i].k:0,s:i});$('sn').value='';rI()}
+function rI(){const s=B.reduce((t,i)=>t+i.q*i.p,0);$('il').innerHTML=tbl(['Item','Qty','Price','Amount',''],O(B,(i,j)=>tr([E(i.n),i.q,f(i.p),f(i.q*i.p),`<button class="g s" onclick="B.splice(${j},1);rI()">Remove</button>`])),'No items added yet.');$('btot').textContent='Total: '+f(Math.max(s-(+v('bx')||0),0))}
+function cq(){$('cqf').innerHTML=v('bm')=='Cheque'?`<div class="fg">${F('cb','Bank name')}${F('cbr','Branch')}${F('cn','Cheque number')}${F('cd','Cheque date','date')}${F('ch','Account holder name')}</div>`:''}
+function confirmBill(){
+ const nm=v('bn'),pn=v('bp');
+ if(!nm||!pn||!B.length)return toast('Enter customer name, phone and at least one item.');
+ const sb=B.reduce((s,i)=>s+i.q*i.p,0),dc=+v('bx')||0,total=Math.max(sb-dc,0),m=v('bm');
+ let pa=v('bpd')===''?(['Cash','Card','Bank transfer'].includes(m)?total:0):+v('bpd');pa=Math.max(0,Math.min(pa,total));
+ if(m=='Cheque'&&(!v('cb')||!v('cn')))return toast('Enter the cheque bank and cheque number.');
+ const lw=B.filter(i=>i.s>=0&&S.st[i.s].q<i.q);
+ const make=()=>{
+  const b={no:'KG-'+String(S.n++).padStart(5,'0'),d:D(),t:new Date().toLocaleTimeString(),c:{n:nm,i:v('bi'),p:pn,a:v('ba')},dv:v('bd'),it:B.map(i=>({n:i.n,q:i.q,p:i.p,k:i.k})),dc,total,m,pays:pa?[{d:D(),a:pa,m}]:[],tr:v('bt')=='Yes'?'wait':'No',ch:m=='Cheque'?{b:v('cb'),br:v('cbr'),no:v('cn'),dt:v('cd'),h:v('ch'),amt:total-pa,st:'Pending'}:null};
+  const k=(b.c.i||pn).toUpperCase();b.k=k;
+  B.forEach(i=>{if(i.s>=0){S.st[i.s].q-=i.q;S.sl.push({d:D(),n:i.n,dl:-i.q,w:'Sold on '+b.no})}});
+  S.cu[k]={n:nm,i:b.c.i,p:pn,a:b.c.a,since:S.cu[k]?S.cu[k].since:D()};S.bl.push(b);P();B=[];go('bill');showBill(b)};
+ if(lw.length)return sure('Stock is lower than the quantity for: '+lw.map(i=>E(i.n)).join(', ')+'. Continue anyway?',make);
+ make()}
+const txt=b=>{const w=74,Ln='-'.repeat(w),r=(s,n)=>String(s).padStart(n),l=(s,n)=>String(s).padEnd(n).slice(0,n),o=[l('KAWYA GROUP',40)+'BILL '+b.no,'Concrete Yard | Hardware | Transport',l('',40)+'Date: '+b.d+' '+(b.t||''),Ln,'Customer: '+b.c.n,'NIC: '+(b.c.i||'-')+'   Phone: '+b.c.p,'Address: '+(b.c.a||'-'),'Section: '+b.dv,Ln,l('Item',34)+r('Qty',6)+r('Price',14)+r('Amount',16),Ln];b.it.forEach(i=>o.push(l(i.n,34)+r(i.q,6)+r(i.p.toFixed(2),14)+r((i.q*i.p).toFixed(2),16)));o.push(Ln);if(b.dc)o.push(r('Discount: -'+b.dc.toFixed(2),w));o.push(r('TOTAL: '+f(b.total),w),r('Paid: '+f(pd(b)),w),r('BALANCE DUE: '+f(bal(b)),w),Ln,'Payment: '+b.m+(b.ch?' (Cheque '+b.ch.no+', '+b.ch.b+')':''),'Our transport: '+(b.tr=='No'?'No':'Yes'),'Goods once sold will not be taken back. Thank you!');return o.join('\n')};
+function showBill(b){M(`<h2>Bill ${b.no}</h2><pre id="pb">${E(txt(b))}</pre><p class="mu">Print opens the printer window: choose the Epson LQ-310, or Save as PDF.</p><div class="acts"><button class="b" onclick="window.print()">Print / Save PDF</button>${waB(b)}</div>`)}
+function waB(b){return waL(b.c.p,`Kawya Group - Bill ${b.no} (${b.d})\nHello ${b.c.n}, thank you for your purchase.\n`+b.it.map(i=>`${i.n} x ${i.q} = ${f(i.q*i.p)}`).join('\n')+`\nTotal: ${f(b.total)}\nPaid: ${f(pd(b))} (${b.m})\nBalance: ${f(bal(b))}\nOur transport: ${b.tr=='No'?'No':'Yes'}`,'Send on WhatsApp','g')}
+/* ---------- customers ---------- */
+function rc(){const q=Q.toLowerCase(),a=Object.entries(S.cu).filter(([k,c])=>(c.n+' '+c.i+' '+c.p).toLowerCase().includes(q));
+ $('res').innerHTML=tbl(['Name','NIC','Phone','Billed','Owes',''],O(a,([k,c])=>{const bs=S.bl.filter(b=>b.k==k);return tr([E(c.n),E(c.i||'-'),E(c.p),f(bs.reduce((s,b)=>s+b.total,0)),`<b class="bad">${f(bs.reduce((s,b)=>s+bal(b),0))}</b>`,`<button class="b s" onclick="cp(decodeURIComponent('${EN(k)}'))">Full details</button>`])}),'No customer found.')}
+function cp(k){const c=S.cu[k],bs=S.bl.filter(b=>b.k==k);if(!c)return;
+ M(`<h2>${E(c.n)}</h2><p>NIC: ${E(c.i||'-')} · Phone: ${E(c.p)}<br>Address: ${E(c.a||'-')}<br>Customer since: ${c.since}</p><div class="gr">${kp('Bills',bs.length,1)}${kp('Total billed',f(bs.reduce((s,b)=>s+b.total,0)),1)}${kp('Paid',f(bs.reduce((s,b)=>s+pd(b),0)),1)}${kp('Owes',`<span class="bad">${f(bs.reduce((s,b)=>s+bal(b),0))}</span>`,1)}</div>
+ ${O(bs.slice().reverse(),b=>`<div class="kp" style="margin-bottom:10px"><b style="font-size:16px">${b.no}</b> on ${b.d} ${st(b)}<br><span>${b.it.map(i=>E(i.n)+' x '+i.q).join(', ')}</span><br>Total ${f(b.total)} · ${b.m}<br>Payments: ${b.pays.map(p=>p.d+' '+f(p.a)).join(', ')||'none yet'}<br>Transport: ${b.tr=='No'?'not needed':b.tr=='wait'?'waiting':b.tr=='out'?'on the way':'delivered '+b.trp.done}<br><button class="g s" style="margin-top:8px" onclick="showBill(bn_('${b.no}'))">View / reprint bill</button></div>`)}`)}
+function rec(n){const b=bn_(n);ask('Receive payment for '+b.no,[['q_a','Amount received (Rs.)','number',bal(b)]],()=>{const a=+v('q_a');if(!a||a<=0)return toast('Enter the amount received.');b.pays.push({d:D(),a:Math.min(a,bal(b)),m:'Cash'});P();X();render()},'Save payment','Remaining on this bill: '+f(bal(b)))}
+function chq(n){const b=bn_(n),c=b.ch;M(`<h2>Cheque details</h2><p>Bill: ${b.no}<br>Customer: ${E(b.c.n)} (${E(b.c.p)})<br>Bank: ${E(c.b)}<br>Branch: ${E(c.br||'-')}<br>Cheque number: ${E(c.no)}<br>Cheque date: ${c.dt||'-'}<br>Account holder: ${E(c.h||'-')}<br>Amount: ${f(c.amt)}<br>Bill total: ${f(b.total)}</p><div class="acts"><button class="b" onclick="chs('${n}',1)">Cheque cleared</button><button class="g" onclick="chs('${n}',0)">Cheque returned</button></div>`)}
+function chs(n,ok){const b=bn_(n);if(ok){b.ch.st='Cleared';b.pays.push({d:D(),a:b.ch.amt,m:'Cheque'})}else b.ch.st='Returned';P();X();render();toast(ok?'Cheque marked as cleared.':'Cheque returned. The amount is back in pending payments.')}
+/* ---------- stock ---------- */
+function su(i){const s=S.st[i];ask('Update count: '+E(s.n),[['q_n','Counted quantity','number',s.q],['q_a','Stock agent name','text','']],()=>{const n=v('q_n');if(n===''||isNaN(n))return toast('Enter the counted quantity.');S.sl.push({d:D(),n:s.n,dl:+n-s.q,w:'Agent count by '+(v('q_a')||'agent')});s.q=+n;P();X();render()},'Save count','Now in stock: '+s.q+' '+E(s.u))}
+function spr(i){const s=S.st[i];ask('Price: '+E(s.n),[['q_p','New selling price (Rs.)','number',s.p]],()=>{const n=v('q_p');if(n===''||isNaN(n))return toast('Enter a price.');s.p=+n;P();X();render()})}
+function addS(){if(!v('xn'))return toast('Enter the item name.');S.st.push({n:v('xn'),c:v('xc')||'Hardware',q:+v('xq')||0,u:v('xu')||'pcs',p:+v('xp')||0,k:+v('xk')||0,r:+v('xr')||0});P();render()}
+/* ---------- transport ---------- */
+function dp(n){const b=bn_(n),o=a=>O(a,x=>`<option>${E(x.a)}`);
+ M(`<h2>Dispatch ${n}</h2>${!S.fl.d.length||!S.fl.v.length?'<p class="mu">Tip: add drivers, assistants and vehicles in the Fleet tab first.</p>':''}<div class="fg">${F('fr','From','text','Kawya Group yard')}${F('to','To','text',b.c.a)}${F('fe','Transport fee (Rs.)','number')}<label>Driver<select id="dr">${o(S.fl.d)}</select></label><label>Assistant<select id="as"><option>None${o(S.fl.a)}</select></label><label>Vehicle<select id="ve">${o(S.fl.v)}</select></label></div><button class="b" onclick="disp('${n}')">Dispatch and prepare messages</button>`)}
+function disp(n){const b=bn_(n),d=S.fl.d.find(x=>x.a==v('dr'))||{a:'-',b:'-'},a=S.fl.a.find(x=>x.a==v('as'))||{a:'-',b:'-'};
+ b.trp={fr:v('fr'),to:v('to')||b.c.a||'-',fee:+v('fe')||0,dr:d.a,dph:d.b,as:a.a,aph:a.b,ve:v('ve')||'-'};b.tr='out';P();render();msgs(n)}
+function msgs(n){const b=bn_(n),t=b.trp;
+ M(`<h2>Dispatched: ${n}</h2><p>Send the messages:</p><div class="acts">${waL(b.c.p,`Kawya Group: Hello ${b.c.n}, your order ${b.no} has left our yard.\nVehicle: ${t.ve}\nDriver: ${t.dr} (${t.dph})\nAssistant: ${t.as}\nDelivering to: ${t.to}\nTransport fee: ${f(t.fee)}`,'WhatsApp customer')}${waL(t.dph,`Delivery job ${b.no}\nCustomer: ${b.c.n}, ${b.c.p}\nFrom: ${t.fr}\nTo: ${t.to}\nItems: ${b.it.map(i=>i.n+' x '+i.q).join(', ')}\nBalance to collect: ${f(bal(b))}\nVehicle: ${t.ve}`,'WhatsApp driver','g')}</div>`)}
+function dl(n){const b=bn_(n);b.tr='done';b.trp.done=D();P();render()}
+/* ---------- salary ---------- */
+function addW(){if(!v('wn'))return toast('Enter the worker name.');S.wk.push({n:v('wn'),p:v('wp'),t:sub.s,r:+v('wr')||0,adv:0,e:[]});P();render()}
+function wk(i){const w=S.wk[i];ask('Add work: '+E(w.n),[['q_u','Days worked (1, 0.5, 2...)','number','1'],['q_n','Work done','text',''],['q_a','Amount (Rs.) - blank = days x daily pay','number','']],()=>{const u=+v('q_u');if(!u)return toast('Enter the days worked.');const a=v('q_a')===''?u*w.r:+v('q_a');w.e.push({d:D(),u,n:v('q_n'),a,rv:w.t=='fixed',p:0});P();X();render()},'Save work',w.t=='daily'?'This work will wait for your approval before it can be paid.':'')}
 function apv(i,j){S.wk[i].e[j].rv=1;P();render()}
-function adv(i){const a=+prompt('Advance amount (Rs.)');if(a>0){S.wk[i].adv+=a;P();render()}}
-function pw_(i){const w=S.wk[i],u=w.e.filter(e=>!e.p&&(w.t=='fixed'||e.rv)),g=u.reduce((s,e)=>s+e.a,0);if(!g)return alert('No approved earnings to pay.');const ded=Math.min(w.adv,g),net=g-ded;if(!confirm('Pay '+f(net)+' to '+w.n+'? (Earned '+f(g)+', advance cut '+f(ded)+')'))return;u.forEach(e=>e.p=1);w.adv-=ded;S.pay.push({d:D(),w:w.n,g,ded,net});P();render()}
-function addU(){if(!v('un'))return;S.sp.push({d:D(),n:v('un'),c:v('uc'),a:+v('ua')||0,o:v('uo')});P();render()}
-function addF(k,ids){if(!v(ids[0]))return;const o={};ids.forEach((x,j)=>o['abc'[j]]=v(x));S.fl[k].push(o);P();render()}
+function adv(i){const w=S.wk[i];ask('Advance: '+E(w.n),[['q_a','Advance amount (Rs.)','number','']],()=>{const a=+v('q_a');if(!(a>0))return toast('Enter the advance amount.');w.adv+=a;P();X();render()},'Give advance','It will be taken off the next salary payment.')}
+function paySal(i){const w=S.wk[i],u=w.e.filter(e=>!e.p&&(w.t=='fixed'||e.rv)),g=u.reduce((s,e)=>s+e.a,0);if(!g)return toast('No approved earnings to pay.');const ded=Math.min(w.adv,g),net=g-ded;
+ sure(`Pay <b>${f(net)}</b> to ${E(w.n)}?<br>Earned ${f(g)}, advance taken off ${f(ded)}.`,()=>{u.forEach(e=>e.p=1);w.adv-=ded;S.pay.push({d:D(),w:w.n,g,ded,net});P();render()},'Pay')}
+/* ---------- supplies and fleet ---------- */
+function addU(){if(!v('un'))return toast('Enter the item.');S.sp.push({d:D(),n:v('un'),c:v('uc'),a:+v('ua')||0,o:v('uo')});P();render()}
+function addF(k,ids){if(!v(ids[0]))return toast('Enter the name or number.');const o={};ids.forEach((x,j)=>o['abc'[j]]=v(x));S.fl[k].push(o);P();render()}
+/* ---------- help and backup ---------- */
+function backup(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='kawya-backup-'+D()+'.json';a.click()}
+function restore(inp){const fl=inp.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.bl||!d.st)throw 0;S=d;fix();P();X();render();toast('Backup restored.')}catch(e){toast('That file is not a valid backup.')}};r.readAsText(fl)}
+function help(){M(`<h2>Help center</h2><p>All data is saved in this browser on this computer. Download a backup regularly, and keep one main computer for billing.</p><div class="acts"><button class="b" onclick="backup()">Download backup</button><label class="g" style="cursor:pointer;flex-direction:row;color:var(--ink);font-size:13px;padding:10px 18px">Restore backup<input type="file" accept=".json" style="display:none" onchange="restore(this)"></label></div>
+ <p class="mu" style="margin-top:16px">Tips: choose the Epson LQ-310 in the print window, or Save as PDF. WhatsApp buttons open the message ready to send.</p>`)}
 render();
 </script></body></html>
